@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Ecoword Dumper",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Que pereza escribir todo a mano zzz...",
   "content_scripts": [
     {

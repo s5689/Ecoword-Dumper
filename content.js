@@ -2,6 +2,56 @@ const wordIcon =
   '<svg style="filter: invert(1); height: 18px; display: inline; margin-left: 0.3rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M64 0C28.7 0 0 28.7 0 64L0 448c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L224 0 64 0zM256 0l0 128 128 0L256 0zM111 257.1l26.8 89.2 31.6-90.3c3.4-9.6 12.5-16.1 22.7-16.1s19.3 6.4 22.7 16.1l31.6 90.3L273 257.1c3.8-12.7 17.2-19.9 29.9-16.1s19.9 17.2 16.1 29.9l-48 160c-3 10-12 16.9-22.4 17.1s-19.8-6.2-23.2-16.1L192 336.6l-33.3 95.3c-3.4 9.8-12.8 16.3-23.2 16.1s-19.5-7.1-22.4-17.1l-48-160c-3.8-12.7 3.4-26.1 16.1-29.9s26.1 3.4 29.9 16.1z"/></svg>';
 
 const fileNames = [
+  'bartolo chancletón',
+  'crispín mondongo',
+  'telesforo pegajoso',
+  'don ciriaco cacahuetín',
+  'margarito trombón',
+  'juanelo pegotillo',
+  'herminia fideos',
+  'prócoro zancadilla',
+  'estupidina plasplas',
+  'clodomiro saltaperros',
+  'filemón ñequeñeque',
+  'petronila burbujea',
+  'apolonio matasapos',
+  'tarsicia bocadillo',
+  'gorgonio sobaquín',
+  'bonifacia tiritona',
+  'marulo pataclín',
+  'anacleto rechinido',
+  'jacaranda chisguete',
+  'rigoberta cuchufleta',
+  'pelagio patatús',
+  'obdulia remolino',
+  'leovigildo ñangazo',
+  'berenjena tostadita',
+  'zacarías pompín',
+  'nicanora papanatas',
+  'fulgencio traca-traca',
+  'alpidio coscorroncio',
+  'saturnina gruñiflor',
+  'eusebio tamborcito',
+  'torcuata pegamocos',
+  'doroteo chipotazo',
+  'isolina rascatripas',
+  'cesáreo menudillo',
+  'pancracia estropajo',
+  'genaro salpicón',
+  'candelaria cuchicuchi',
+  'obdulio tragacocos',
+  'eleuteria frijolín',
+  'melquíades patacuajo',
+  'sinforosa gargajita',
+  'teófilo culebrón',
+  'bernarda trompichón',
+  'ulpiano surtidito',
+  'casimira tronchatoro',
+  'clotildo babasucia',
+  'basilia piojosilla',
+  'fermín tirabuzón',
+  'lupercia muevelengua',
+  'tránsito escupitajo',
   'mesa sentada',
   'luna apagada',
   'gato volador',
@@ -229,6 +279,7 @@ function generateWord() {
     age: 'Edad',
     anamnesis: 'Anamnesis',
     study_desc: 'Estudio Realizado',
+    prioridad: 'Prioridad',
   };
 
   const table = document.querySelector('#crud-datatable');
@@ -247,10 +298,12 @@ function generateWord() {
       if (currentClass in toExtract) {
         let toInsert = '';
 
-        if (currentClass !== 'anamnesis') {
-          toInsert = valua.innerHTML;
-        } else {
+        if (currentClass === 'anamnesis') {
           toInsert = valua.childNodes[0].getAttribute('data-content');
+        } else if (currentClass === 'prioridad') {
+          toInsert = valua.querySelector('select').value;
+        } else {
+          toInsert = valua.innerHTML;
         }
 
         currentRowData[toExtract[currentClass]] = toInsert;
@@ -262,6 +315,8 @@ function generateWord() {
 
   // Generar tabla para exportar
   const exportTable = document.createElement('table');
+  const priorityRow = 'background-color: #ffff00;';
+  const normalRow = 'background-color: #c6d9f1;';
   const cellStyle = 'border: 1px solid black;';
   const text = { head: '', body: '' };
 
@@ -276,7 +331,7 @@ function generateWord() {
   // Body
   data.forEach((value) => {
     text.body += `
-      <tr>
+      <tr style="${value.Prioridad === '' ? normalRow : priorityRow}>
         <td style="${cellStyle}">${value.Nombre} ${value.RUT}</td>
         <td style="${cellStyle} text-align: center;">${value.Edad}</td>
         <td style="${cellStyle} text-align: center;">${value['Estudio Realizado']}</td>
@@ -318,6 +373,6 @@ function generateWord() {
   `);
 
   link.href = URL.createObjectURL(blob);
-  link.download = fileNames[Math.floor(Math.random() * 200)];
+  link.download = fileNames[Math.floor(Math.random() * 250)];
   link.click();
 }
