@@ -331,7 +331,7 @@ function generateWord() {
   // Body
   data.forEach((value) => {
     text.body += `
-      <tr style="${value.Prioridad === '' ? normalRow : priorityRow}>
+      <tr style="${value.Prioridad === '' ? normalRow : priorityRow}">
         <td style="${cellStyle}">${value.Nombre} ${value.RUT}</td>
         <td style="${cellStyle} text-align: center;">${value.Edad}</td>
         <td style="${cellStyle} text-align: center;">${value['Estudio Realizado']}</td>
